@@ -1,0 +1,134 @@
+/* LoginForm.module.css */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure full viewport height */
+    background-color: #f5f5f5; /* Light gray background */
+    font-family: Arial, sans-serif; /* Specify a font family */
+  }
+  
+  .login-content {
+    background-color: #fff; /* White background for the form content */
+    border-radius: 8px; /* Slightly more rounded corners */
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+    width: 400px; /* Adjust width as needed */
+  }
+  
+  .logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .logo {
+    width: 200px; /* Adjust logo size as needed */
+    height: auto;
+  }
+  
+  .brand-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 10px; /* Add spacing after logo */
+    color: #333; /* Darker text color */
+  }
+  
+  .sign-in-title {
+    margin-bottom: 20px;
+    text-align: left; /* Left-align the title */
+    color: #333;
+    text-align: center; /* Darker text color */
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .input-group {
+      margin-bottom: 15px; /* Add spacing between input groups */
+  }
+  
+  .input-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555; /* Slightly lighter label color */
+  }
+  
+  
+  .input {
+    width: 100%;
+    padding: 12px; /* Increased padding */
+    border: 1px solid #ddd; /* Lighter border */
+    border-radius: 5px;
+    box-sizing: border-box; /* Include padding in width */
+    font-size: 1rem; /* Slightly larger font size */
+    transition: border-color 0.2s; /* Smooth border transition on focus */
+  }
+  
+  .input:focus {
+    outline: none;
+    border-color: #007bff; /* Blue border on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2); /* Subtle blue shadow on focus */
+  }
+  
+  .options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    margin-bottom: 20px; /* Add margin below options */
+    color: #777;
+  }
+  
+  .remember-me {
+    display: flex;
+    align-items: center;
+  }
+  
+  .forgot-password {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.2s; /* Smooth color transition on hover */
+  }
+  
+  .forgot-password:hover {
+    text-decoration: underline;
+    color: #0056b3;
+  }
+  
+  .button {
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500; /* Slightly bolder font */
+    transition: background-color 0.2s; /* Smooth background transition */
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }
+  
+  .register-option {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #777;
+  }
+  
+  .register-link {
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  
+  .register-link:hover {
+    color: #0056b3;
+  }
