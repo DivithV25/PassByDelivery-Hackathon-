@@ -132,3 +132,23 @@
   .register-link:hover {
     color: #0056b3;
   }
+  
+  /* Add this to your existing CSS file (globals.css or specific login form module) */
+.top-right-link {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  
+  .link {
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  

@@ -27,8 +27,7 @@ const LoginForm = () => {
           <span className="brand-name">Pass-By-Delivery</span>
         </div>
 
-        <center><h2 className="sign-in-title">Sign In</h2></center>
-
+        <h2 className="sign-in-title">Sign In</h2>
         <form onSubmit={handleSubmit} className="form">
           <div className="input-group">
             <label htmlFor="email">Email Address</label>
