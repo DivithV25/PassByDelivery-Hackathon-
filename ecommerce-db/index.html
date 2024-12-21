@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Frontend</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .container {
+            margin: 20px;
+        }
+
+        .item {
+            background: white;
+            margin: 10px 0;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .item button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .item button:hover {
+            background-color: #0056b3;
+        }
+
+        .cart {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .order-summary {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .order-summary p {
+            margin: 5px 0;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = [];
+
+            const updateCart = () => {
+                const cartContainer = document.getElementById('cart');
+                const cartTotal = document.getElementById('cart-total');
+                cartContainer.innerHTML = cart.map(item =>
+                    `<p>${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}</p>`
+                ).join('');
+                const totalAmount = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+                cartTotal.textContent = `Total: $${totalAmount.toFixed(2)}`;
+            };
+
+            const addToCart = (name, price, quantity) => {
+                const existingItem = cart.find(item => item.name === name);
+                if (existingItem) {
+                    existingItem.quantity += quantity;
+                } else {
+                    cart.push({ name, price, quantity });
+                }
+                updateCart();
+            };
+
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', () => {
+                    const name = button.dataset.name;
+                    const price = parseFloat(button.dataset.price);
+                    const quantity = parseInt(button.previousElementSibling.value, 10);
+                    addToCart(name, price, quantity);
+                });
+            });
+
+            document.getElementById('place-order').addEventListener('click', () => {
+                const userAddress = document.getElementById('delivery-address').value;
+                if (!userAddress) {
+                    alert("Please enter a delivery address.");
+                    return;
+                }
+
+                const orderData = {
+                    userId: "60d2bc2f9c1b2e2d3d431c8a", // Example userId, replace with dynamic user
+                    items: cart,
+                    deliveryAddress: userAddress
+                };
+
+                fetch('http://localhost:3000/api/orders', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(orderData)
+                })
+                    .then(res => {
+                        // Log response for debugging
+                        console.log('Response Status:', res.status);
+                        return res.json(); // Convert the response to JSON
+                    })
+                    .then(data => {
+                        // If data is received, it's assumed the order was placed successfully
+                        if (data.message && data.orderId) {
+                            alert('Order placed successfully!');
+                            console.log('Order Data:', data);
+                            // Optionally reset cart
+                            cart.length = 0;
+                            updateCart();
+                            document.getElementById('delivery-address').value = '';
+                        } else {
+                            // Handle unexpected response structure
+                            alert('There was an issue with placing your order. Please try again.');
+                            console.error('Unexpected response:', data);
+                        }
+                    })
+                    .catch(err => {
+                        // Catch any errors during fetch or response processing
+                        console.error('Error placing order:', err);
+                        alert('There was an error placing your order. Please try again.');
+                    });
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>E-Commerce Store</h1>
+    </header>
+    <div class="container">
+        <div class="item">
+            <span>Item 1 - $29.99</span>
+            <input type="number" min="1" value="1">
+            <button class="add-to-cart" data-name="Item 1" data-price="29.99">Add to Cart</button>
+        </div>
+        <div class="item">
+            <span>Item 2 - $49.99</span>
+            <input type="number" min="1" value="1">
+            <button class="add-to-cart" data-name="Item 2" data-price="49.99">Add to Cart</button>
+        </div>
+        <div class="item">
+            <span>Item 3 - $99.99</span>
+            <input type="number" min="1" value="1">
+            <button class="add-to-cart" data-name="Item 3" data-price="99.99">Add to Cart</button>
+        </div>
+
+        <div class="cart" id="cart">
+            <h2>Cart</h2>
+            <p id="cart-total">Total: $0.00</p>
+        </div>
+
+        <div class="order-summary">
+            <h3>Delivery Address</h3>
+            <input type="text" id="delivery-address" placeholder="Enter your delivery address">
+        </div>
+
+        <button id="place-order">Place Order</button>
+    </div>
+</body>
+
+</html>
