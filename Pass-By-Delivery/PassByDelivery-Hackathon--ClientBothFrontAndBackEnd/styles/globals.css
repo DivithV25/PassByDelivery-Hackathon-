@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Global Styles */
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f9fafb;
+  color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Helvetica", sans-serif;
+}
+
+button {
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom Classes */
+.card {
+  @apply bg-white rounded-lg shadow-md p-6;
+}
+
+.btn-primary {
+  @apply bg-primary text-white py-2 px-4 rounded-md hover:bg-secondary transition duration-300;
+}
+
+.btn-secondary {
+  @apply bg-secondary text-white py-2 px-4 rounded-md hover:bg-primary transition duration-300;
+}
+
+/* Dark Mode Styles */
+.dark body {
+  background-color: #121212;
+  color: #E0E0E0;
+}
+
+.dark .card {
+  background-color: #1E1E1E;
+  color: #E0E0E0;
+}
+
+.dark .btn-primary {
+  background-color: #1E40AF; /* Blue in dark mode */
+  color: #E0E0E0;
+}
+
+.dark .btn-secondary {
+  background-color: #10B981; /* Green in dark mode */
+  color: #E0E0E0;
+}
