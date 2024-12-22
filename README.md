@@ -6,6 +6,11 @@ Traditional delivery systems are inefficient and costly, causing delays and incr
 
 ---
 
+# Solution
+
+Pass-By Delivery which essentially uses hyperlocal network involving civilians from and within the neighborhood to facilitate the speed and efficiency of delivery systems.
+
+---
 # Why this Idea?
 
 
